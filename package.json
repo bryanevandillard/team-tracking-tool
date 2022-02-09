@@ -1,0 +1,20 @@
+{
+  "name": "team-tracker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/median-man/team-tracker.git"
+  },
+  "keywords": [],
+  "author": "John Desrosiers <john.desro@gmail.com> (https://github.com/median-man)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/median-man/team-tracker/issues"
+  },
+  "homepage": "https://github.com/median-man/team-tracker#readme"
+}
