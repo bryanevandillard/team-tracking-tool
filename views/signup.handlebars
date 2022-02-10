@@ -1,1 +1,42 @@
-<h1>signup</h1>
+<link rel="stylesheet" href="/css/signup.css" />
+<div class="wrapper">
+  <main class="form-signin">
+    <form>
+      <h1 class="h3 mb-3 fw-normal">Start tracking your teams.</h1>
+      <p>Register below to create your account.</p>
+
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control form-signin-input form-signin-input-top"
+          id="username-input"
+          placeholder="median-man"
+          autocomplete="off"
+        />
+        <label for="username-input">Username</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="email"
+          class="form-control form-signin-input"
+          id="email-input"
+          placeholder="name@example.com"
+          autocomplete="off"
+        />
+        <label for="email-input">Email address</label>
+      </div>
+      <div class="form-floating">
+        <input
+          type="password"
+          class="form-control form-signin-input form-signin-input-bottom"
+          id="password-input"
+          placeholder="Password"
+          autocomplete="off"
+        />
+        <label for="password-input">Password</label>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="/login">Login here</a></p>
+  </main>
+</div>
