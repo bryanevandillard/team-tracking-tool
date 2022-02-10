@@ -1,7 +1,7 @@
 const express = require("express");
 const sequelize = require("./config/sequelize");
 const { engine } = require("express-handlebars");
-
+const routes = require("./controllers");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -11,9 +11,7 @@ app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
 app.set("views", "./views");
 
-app.get("/", (req, res) => {
-  res.render("home");
-});
+app.use(routes);
 
 async function start() {
   try {
