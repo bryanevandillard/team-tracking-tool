@@ -14,7 +14,11 @@ User.hasMany(Team, {
 });
 Team.belongsTo(User);
 
-// TODO:  Team:Note 1:* relationship
+// Teams's have many notes
+// - default fk is teamId
+// - default onDelete behavior is SET NULL
+Team.hasMany(Note);
+Note.belongsTo(Team);
 
 // TODO: Team:Member 1:* relationship
 
