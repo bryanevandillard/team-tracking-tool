@@ -20,6 +20,10 @@ Team.belongsTo(User);
 Team.hasMany(Note);
 Note.belongsTo(Team);
 
-// TODO: Team:Member 1:* relationship
+// Team:Member 1:* relationship
+// - default fk is teamId
+// - default onDelete behavior is SET NULL
+Team.hasMany(Member);
+Member.belongsTo(Team);
 
 module.exports = { Member, Note, Team, User };
