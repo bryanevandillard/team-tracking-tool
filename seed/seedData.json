@@ -1,0 +1,66 @@
+[
+  {
+    "username": "quinn",
+    "email": "quinn@email.com",
+    "password": "password",
+    "teams": [
+      {
+        "title": "Red Team",
+        "members": [
+          {
+            "name": "Judith"
+          },
+          {
+            "name": "Destiny"
+          },
+          {
+            "name": "Raja"
+          }
+        ],
+        "notes": [
+          {
+            "createdAt": "2021-02-07T08:01:51.000-0800",
+            "body": "aliquam iaculis, lacus pede sagittis augue, eu tempor erat neque non quam. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam fringilla cursus purus."
+          },
+          {
+            "createdAt": "2021-01-28T10:19:19.000-0800",
+            "body": "sapien. Nunc pulvinar arcu et pede. Nunc sed orci lobortis augue scelerisque mollis. Phasellus libero mauris, aliquam eu, accumsan sed, facilisis vitae, orci."
+          },
+          {
+            "createdAt": "2021-01-06T11:42:32.000-0800",
+            "body": "augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci"
+          },
+          {
+            "createdAt": "2021-02-11T22:53:13.000-0800",
+            "body": "Pellentesque ut ipsum ac mi eleifend egestas."
+          },
+          {
+            "createdAt": "2021-01-03T22:04:01.000-0800",
+            "body": "consectetuer adipiscing elit. Curabitur sed tortor. Integer aliquam adipiscing lacus. Ut nec urna"
+          }
+        ]
+      },
+      {
+        "title": "Blue Team",
+        "members": [{ "name": "Amber" }],
+        "notes": [
+          {
+            "createdAt": "2021-01-29T08:45:13.000-0800",
+            "body": "Morbi vehicula. Pellentesque tincidunt tempus risus. Donec egestas. Duis ac arcu. Nunc mauris. Morbi non sapien molestie orci tincidunt adipiscing. Mauris molestie pharetra nibh. Aliquam ornare, libero at auctor ullamcorper,"
+          }
+        ]
+      },
+      {
+        "title": "Green Team",
+        "members": [],
+        "notes": []
+      }
+    ]
+  },
+  {
+    "username": "nell",
+    "email": "nell@email.com",
+    "password": "password",
+    "teams": []
+  }
+]
