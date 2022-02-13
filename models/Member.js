@@ -20,7 +20,7 @@ Member.init(
   },
   {
     sequelize,
-    modelName: "team",
+    modelName: "member",
   }
 );
 

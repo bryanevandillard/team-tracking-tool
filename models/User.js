@@ -45,15 +45,9 @@ User.init(
         if (user.changed("password")) {
           user.password = await bcrypt.hash(user.password, PW_SALT_ROUNDS);
         }
-      },
-      // hash password when creating users with bulk create (seed script)
-      beforeBulkCreate(users) {
-        return Promise.all(
-          users.map(async (u) => {
-            u.password = await bcrypt.hash(u.password, PW_SALT_ROUNDS);
-          })
-        );
-      },
+      }
+      // Don't add beforeBulkCreate to hash passwords. It hashes before validate
+      // when the validate option is used on bulkCreate.
     },
   }
 );

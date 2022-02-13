@@ -18,7 +18,7 @@ Note.init(
   },
   {
     sequelize,
-    modelName: "team",
+    modelName: "note",
   }
 );
 
