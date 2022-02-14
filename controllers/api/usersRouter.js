@@ -1,5 +1,6 @@
 const usersRouter = require("express").Router();
 const { User } = require("../../models");
+
 // POST	/api/users	create a new user
 usersRouter.post("/", async (req, res) => {
   try {
@@ -30,12 +31,28 @@ usersRouter.post("/", async (req, res) => {
 });
 
 // POST	/api/users/login	log in given email and password
-usersRouter.post("/", (req, res) => {
-  res.json({ message: "TODO: create login session for user" });
+usersRouter.post("/login", async (req, res) => {
+  const user = await User.findOne({ where: { email: req.body.email } });
+  if (!user) {
+    res.status(401).json({ message: "Invalid email or password given" });
+    return;
+  }
+  const isAuthentic = await user.checkPassword(req.body.password);
+  if (!isAuthentic) {
+    res.status(401).json({ message: "Invalid email or password given" });
+    return;
+  }
+  // init the login session
+  req.session.userId = user.id;
+  req.session.save(() => {
+    // don't provide password hash to clients
+    const { id, username, email } = user;
+    res.json({ message: "Logged in", user: { id, username, email } });
+  });
 });
 
 // POST	/api/users/logout	end the session
-usersRouter.post("/", (req, res) => {
+usersRouter.post("/users/logout", (req, res) => {
   res.json({ message: "TODO: destroy user session" });
 });
 

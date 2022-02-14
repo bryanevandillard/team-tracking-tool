@@ -4,7 +4,12 @@ const bcrypt = require("bcrypt");
 
 const PW_SALT_ROUNDS = 10;
 
-class User extends Model {}
+class User extends Model {
+  checkPassword(pw) {
+    // Returns promise which resolves a boolean (true if pw matches)
+    return bcrypt.compare(pw, this.password);
+  }
+}
 
 User.init(
   {
@@ -45,7 +50,7 @@ User.init(
         if (user.changed("password")) {
           user.password = await bcrypt.hash(user.password, PW_SALT_ROUNDS);
         }
-      }
+      },
       // Don't add beforeBulkCreate to hash passwords. It hashes before validate
       // when the validate option is used on bulkCreate.
     },
