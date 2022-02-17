@@ -1,1 +1,1 @@
-create database if not exists team_tracker;
+create database if not exists teamtracker;

@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.form-signin {
+  /* border radius for form controls (bs default is 0.25rem) */
+  --border-rad: 0.25rem;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin-input {
+  margin-bottom: -1px;
+  border-radius: 0;
+}
+
+.form-signin-input-top {
+  border-top-right-radius: var(--border-rad);
+  border-top-left-radius: var(--border-rad);
+}
+
+.form-signin-input-bottom {
+  margin-bottom: 10px;
+  border-bottom-left-radius: var(--border-rad);
+  border-bottom-right-radius: var(--border-rad);
+}
