@@ -1,0 +1,9 @@
+.x-btn {
+  display: inline;
+  padding: 0;
+  opacity: 0.85;
+}
+
+.x-btn:hover {
+  opacity: 1;
+}
