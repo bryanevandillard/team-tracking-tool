@@ -1,1 +1,49 @@
-<h1>add-note</h1>
+<main class="container">
+  {{> page-header heading="Add a Note to Red Team Log"}}
+  <p>
+    <a href="/teams/1">Back to Red Team Info</a>
+  </p>
+  <section class="pt-3">
+    <h2 class="h5">Members</h2>
+    <p>Anna, Berry, Cedric, Donna</p>
+  </section>
+  <section style="max-width: 30rem" class="pt-3">
+    <form>
+      <h2 class="h5">Add Note</h2>
+      <div class="mb-3">
+        <label for="date-input" class="form-label">Date</label>
+        <input type="date" class="form-control" id="date-input" name="date">
+      </div>
+      <div class="mb-3">
+        <label for="time-input" class="form-label">Time</label>
+        <input type="time" class="form-control" id="time-input" name="time">
+      </div>
+      <div class="mb-3">
+        <label for="body-input" class="form-label">Note</label>
+        <textarea class="form-control" id="body-input" rows="5" name="body" placeholder="Who did you speak with? What did you talk about? How is the team doing?"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save Note</button>
+    </form>
+    </div>
+
+  </section>
+
+  <script>
+    // Set default values for date and time inputs using client's local time
+    const formatTime = date => {
+      let hours = date.getHours();
+      if (hours < 10) {
+        hours = "0" + hours;
+      }
+      let minutes = date.getMinutes();
+      if (minutes < 10) {
+        minutes = "0" + minutes
+      }
+      return `${hours}:${minutes}`
+    }
+    document.querySelector("#date-input").valueAsDate = new Date();
+    document.querySelector("#time-input").value = formatTime(new Date());
+
+    // give textarea focus
+    document.querySelector("#body-input").focus();
+  </script>
