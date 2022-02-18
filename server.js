@@ -4,7 +4,7 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sequelize = require("./config/sequelize");
 const { engine } = require("express-handlebars");
-const routes = require("./controllers");
+const router = require("./controllers");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -39,7 +39,7 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(routes);
+app.use(router);
 
 (async function startServer() {
   try {
