@@ -1,1 +1,39 @@
-<h1>members</h1>
+<main class="container">
+  {{> page-header heading="Red Team Members"}}
+  <p>
+    <a href="/teams/1">Back to Red Team Info</a>
+  </p>
+  <div style="max-width: 30rem">
+    <form>
+      <div>
+        <label for="member-name">Enter a name and press submit to add a new member:</label>
+        <div class="input-group mb-3">
+          <input id="member-name" type="text" class="form-control" placeholder="Team Member Name"
+            aria-describedby="submit-member" name="name">
+          <button class="btn btn-primary" type="submit" id="submit-member">Add member</button>
+        </div>
+      </div>
+    </form>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item d-flex justify-content-between">
+          Anna
+          {{!-- value holds the member id --}}
+          <button class="btn x-btn delete-member" value="1" aria-label="delete member Anna">❌</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          Berry
+          <button class="btn x-btn delete-member" value="2" aria-label="delete member Berry">❌</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          Cedric
+          <button class="btn x-btn delete-member" value="3" aria-label="delete member Cedric">❌</button>
+        </li>
+        <li class="list-group-item d-flex justify-content-between">
+          Donna
+          <button class="btn x-btn delete-member" value="4" aria-label="delete member Donna">❌</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</main>
