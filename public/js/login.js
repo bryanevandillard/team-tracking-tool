@@ -1,11 +1,3 @@
-const renderAlert = (message, element) => {
-  element.innerHTML = `
-    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-      <strong>Uh oh!</strong> ${message}
-      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>`;
-};
-
 // Example starter JavaScript for disabling form submissions if there are invalid fields
 document
   .querySelector(".login-form")

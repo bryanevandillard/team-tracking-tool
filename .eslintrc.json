@@ -6,7 +6,9 @@
     "browser": true
   },
   "globals": {
-    "bootstrap": "readonly"
+    "bootstrap": "readonly",
+    "renderAlert": "readonly",
+    "createButtonSpinner": "readonly"
   },
   "rules": {
     "no-var": "error",
