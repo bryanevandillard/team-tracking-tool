@@ -4,13 +4,15 @@
     <a href="/teams">Back to teams</a>
   </p>
   <section style="max-width: 30rem" class="pt-3">
-    <form>
+    <form class="add-team-form">
       <div class="mb-3">
         <label for="title" class="form-label">Team Title</label>
-        <input type="text" class="form-control" id="title" name="title">
+        <input type="text" class="form-control" id="title" name="title" required minlength="1" maxlength="10">
       </div>
       <button type="submit" class="btn btn-primary">Create Team</button>
+      <div id="error-container"></div>
     </form>
-    </div>
 
   </section>
+</main>
+<script src="/js/add-team.js"></script>
