@@ -12,7 +12,7 @@ const app = express();
 // configure session middleware
 app.use(
   session({
-    secret: "keyboard cat",
+    secret: process.env.SESSION_SECRET,
     cookie: {
       // expires after 24 hours
       maxAge: 24 * 60 * 60 * 1000,
