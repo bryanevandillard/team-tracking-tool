@@ -32,4 +32,8 @@ module.exports = {
   renderMembers: (req, res) => {
     res.render("members");
   },
+
+  renderAddTeam: (req, res) => {
+    res.render("add-team");
+  },
 };

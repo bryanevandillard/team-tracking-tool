@@ -13,8 +13,8 @@ const {
   renderTeamDetails,
   renderAddNote,
   renderMembers,
+  renderAddTeam,
 } = require("./views");
-
 
 // Member API routes
 router.post("/api/members", createMember);
@@ -39,6 +39,7 @@ router
   .get("/signup", renderSignup)
   .get("/login", renderLogin)
   .get("/teams", renderTeams)
+  .get("/teams/add", renderAddTeam)
   .get("/teams/:id", renderTeamDetails)
   .get("/teams/:id/add-note", renderAddNote)
   .get("/teams/:id/members", renderMembers);
