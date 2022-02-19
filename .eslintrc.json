@@ -5,6 +5,9 @@
     "node": true,
     "browser": true
   },
+  "globals": {
+    "bootstrap": "readonly"
+  },
   "rules": {
     "no-var": "error",
     "prefer-const": "error"
