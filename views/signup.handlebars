@@ -1,42 +1,32 @@
 <link rel="stylesheet" href="/css/signup.css" />
 <div class="wrapper">
   <main class="form-signin">
-    <form>
+    <form class="signup-form position-relative">
       <h1 class="h3 mb-3 fw-normal">Start tracking your teams.</h1>
       <p>Register below to create your account.</p>
 
       <div class="form-floating">
-        <input
-          type="text"
-          class="form-control form-signin-input form-signin-input-top"
-          id="username-input"
-          placeholder="median-man"
-          autocomplete="off"
-        />
+        <input name="username" type="text" class="form-control form-signin-input form-signin-input-top"
+          id="username-input" placeholder="median-man" autocomplete="off" pattern="^[a-zA-Z0-9_]{2,20}$" required />
         <label for="username-input">Username</label>
+        <div class="invalid-feedback">
+          Username must contain at least two characters.
+        </div>
       </div>
       <div class="form-floating">
-        <input
-          type="email"
-          class="form-control form-signin-input"
-          id="email-input"
-          placeholder="name@example.com"
-          autocomplete="off"
-        />
+        <input name="email" type="email" class="form-control form-signin-input" id="email-input"
+          placeholder="name@example.com" autocomplete="off" required />
         <label for="email-input">Email address</label>
       </div>
       <div class="form-floating">
-        <input
-          type="password"
-          class="form-control form-signin-input form-signin-input-bottom"
-          id="password-input"
-          placeholder="Password"
-          autocomplete="off"
-        />
+        <input name="password" type="password" class="form-control form-signin-input form-signin-input-bottom"
+          id="password-input" placeholder="Password" autocomplete="off" required minlength="8" maxlength="30" />
         <label for="password-input">Password</label>
       </div>
       <button class="w-100 btn btn-lg btn-primary" type="submit">Sign Up</button>
+      <div id="error-container"></div>
     </form>
     <p>Already have an account? <a href="/login">Login here</a></p>
   </main>
 </div>
+<script src="/js/signup.js"></script>
