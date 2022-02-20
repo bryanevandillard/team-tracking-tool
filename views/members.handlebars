@@ -1,39 +1,37 @@
 <main class="container">
-  {{> page-header heading="Red Team Members"}}
+  {{> page-header }}
   <p>
-    <a href="/teams/1">Back to Red Team Info</a>
+    <a href="/teams/{{team.id}}">Back to {{team.title}} Info</a>
   </p>
   <div style="max-width: 30rem">
-    <form>
+    <form id="add-member-form">
       <div>
         <label for="member-name">Enter a name and press submit to add a new member:</label>
+        <input name="teamId" type="hidden" value="{{team.id}}">
         <div class="input-group mb-3">
           <input id="member-name" type="text" class="form-control" placeholder="Team Member Name"
-            aria-describedby="submit-member" name="name">
-          <button class="btn btn-primary" type="submit" id="submit-member">Add member</button>
+            aria-describedby="submit-member" name="name" required minlength="1" maxlength="30"
+            pattern="[a-zA-Z0-9 ]{1,30}">
+          <button class="btn btn-primary" type="submit">Add member</button>
         </div>
       </div>
+      <div id="error-container"></div>
     </form>
+    {{#if team.members.length}}
     <div class="card">
       <ul class="list-group list-group-flush">
+        {{#each team.members}}
         <li class="list-group-item d-flex justify-content-between">
-          Anna
+          {{name}}
           {{!-- value holds the member id --}}
-          <button class="btn x-btn delete-member" value="1" aria-label="delete member Anna">❌</button>
+          <button class="btn x-btn delete-member" value="{{id}}" aria-label="delete member Anna">❌</button>
         </li>
-        <li class="list-group-item d-flex justify-content-between">
-          Berry
-          <button class="btn x-btn delete-member" value="2" aria-label="delete member Berry">❌</button>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          Cedric
-          <button class="btn x-btn delete-member" value="3" aria-label="delete member Cedric">❌</button>
-        </li>
-        <li class="list-group-item d-flex justify-content-between">
-          Donna
-          <button class="btn x-btn delete-member" value="4" aria-label="delete member Donna">❌</button>
-        </li>
+        {{/each}}
       </ul>
     </div>
+    {{else}}
+    <p>This team doesn't have any members yet. Use the form above to add members to this team.</p>
+    {{/if}}
   </div>
 </main>
+<script src="/js/members.js"></script>

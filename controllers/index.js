@@ -20,7 +20,8 @@ const {
 const router = express.Router();
 
 // Member API routes
-router.post("/api/members", withAuth, createMember);
+router.use("/api/members", withAuth);
+router.post("/api/members", createMember);
 router.delete("/api/members/:id", deleteMember);
 
 // Notes API routes

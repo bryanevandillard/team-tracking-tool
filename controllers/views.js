@@ -1,3 +1,5 @@
+const { Team, Member } = require("../models");
+
 module.exports = {
   renderWithLoginState: (req, res, next) => {
     const prevRenderFn = res.render.bind(res);
@@ -12,8 +14,6 @@ module.exports = {
   },
   // explains what the app is and has a "Call to action" button to go signup
   renderHome: (req, res) => {
-    console.log(res.render);
-    console.log("rendering home");
     res.render("home");
   },
 
@@ -42,8 +42,25 @@ module.exports = {
   },
 
   // view/add/delete members for a specific team (can only view view for own teams)
-  renderMembers: (req, res) => {
-    res.render("members");
+  renderMembers: async (req, res) => {
+    try {
+      const team = await Team.findOne({
+        where: { userId: req.session.userId, id: req.params.id },
+        include: { model: Member },
+      });
+
+      if (!team) {
+        return res.redirect(`/teams/${req.params.id}`);
+      }
+
+      res.render("members", {
+        heading: `${team.title} Members`,
+        team: team.get({ plain: true }),
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send();
+    }
   },
 
   renderAddTeam: (req, res) => {
