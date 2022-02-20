@@ -53,6 +53,8 @@ module.exports = {
 
   //end the session
   logout: (req, res) => {
-    res.json({ message: "TODO: destroy user session" });
+    req.session.destroy(() => {
+      res.json({ message: "Good bye." });
+    });
   },
 };
