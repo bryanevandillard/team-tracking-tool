@@ -1,6 +1,19 @@
 module.exports = {
+  renderWithLoginState: (req, res, next) => {
+    const prevRenderFn = res.render.bind(res);
+    res.render = (view, ...args) => {
+      const isLoggedIn = Boolean(req.session.userId);
+      if (args.length === 0 || typeof args[0] === "function") {
+        return prevRenderFn(view, { isLoggedIn }, ...args);
+      }
+      return prevRenderFn(view, { isLoggedIn, ...args[0] }, args[1]);
+    };
+    next();
+  },
   // explains what the app is and has a "Call to action" button to go signup
   renderHome: (req, res) => {
+    console.log(res.render);
+    console.log("rendering home");
     res.render("home");
   },
 

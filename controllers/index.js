@@ -1,4 +1,4 @@
-const router = require("express").Router();
+const express = require("express");
 
 // Import controllers
 const { createMember, deleteMember } = require("./members");
@@ -14,7 +14,9 @@ const {
   renderAddNote,
   renderMembers,
   renderAddTeam,
+  renderWithLoginState,
 } = require("./views");
+const router = express.Router();
 
 // Member API routes
 router.post("/api/members", createMember);
@@ -34,7 +36,9 @@ router.post("/api/users/login", login);
 router.post("/api/users/logout", logout);
 
 // Add view routes
-router
+const viewRouter = express.Router();
+viewRouter.use(renderWithLoginState);
+viewRouter
   .get("/", renderHome)
   .get("/signup", renderSignup)
   .get("/login", renderLogin)
@@ -43,5 +47,6 @@ router
   .get("/teams/:id", renderTeamDetails)
   .get("/teams/:id/add-note", renderAddNote)
   .get("/teams/:id/members", renderMembers);
+router.use(viewRouter);
 
 module.exports = router;
