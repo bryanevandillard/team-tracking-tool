@@ -2,6 +2,7 @@ const express = require("express");
 
 // Import controllers
 const { createMember, deleteMember } = require("./members");
+const { withAuth } = require("./middleware");
 const { createNote, deleteNote } = require("./notes");
 const { createTeam, deleteTeam } = require("./teams");
 const { createUser, login, logout } = require("./users");
@@ -19,7 +20,7 @@ const {
 const router = express.Router();
 
 // Member API routes
-router.post("/api/members", createMember);
+router.post("/api/members", withAuth, createMember);
 router.delete("/api/members/:id", deleteMember);
 
 // Notes API routes
@@ -46,7 +47,7 @@ viewRouter
   .get("/teams/add", renderAddTeam)
   .get("/teams/:id", renderTeamDetails)
   .get("/teams/:id/add-note", renderAddNote)
-  .get("/teams/:id/members", renderMembers);
+  .get("/teams/:id/members", withAuth, renderMembers);
 router.use(viewRouter);
 
 module.exports = router;
