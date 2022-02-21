@@ -10,31 +10,17 @@
       </tr>
     </thead>
     <tbody>
+      {{#each teams}}
       <tr>
-        <td><a href="/teams/1">Red team</a></td>
-        <td>1/25/2022</td>
-        <td>❌</td>
+        <td><a href="/teams/{{id}}">{{title}}</a></td>
+        {{!--format date on client side to reflect correct time zone--}}
+        <td data-ts="{{createdAt}}"></td>
+        <td>
+          <button class="btn x-btn delete-team" value="{{id}}" aria-label="delete {{title}}">❌</button>
+        </td>
       </tr>
-      <tr>
-        <td><a href="/teams/1">Red team</a></td>
-        <td>1/25/2022</td>
-        <td>❌</td>
-      </tr>
-      <tr>
-        <td><a href="/teams/1">Red team</a></td>
-        <td>1/25/2022</td>
-        <td>❌</td>
-      </tr>
-      <tr>
-        <td><a href="/teams/1">Red team</a></td>
-        <td>1/25/2022</td>
-        <td>❌</td>
-      </tr>
-      <tr>
-        <td><a href="/teams/1">Red team</a></td>
-        <td>1/25/2022</td>
-        <td>❌</td>
-      </tr>
+      {{/each}}
     </tbody>
   </table>
 </main>
+<script src="/js/teams.js"></script>

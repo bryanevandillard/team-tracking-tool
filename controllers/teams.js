@@ -1,14 +1,10 @@
 const { Team } = require("../models");
+const { invalidTeamError, serverError } = require("./errors");
 
 module.exports = {
   // 	create new team
   createTeam: async (req, res) => {
     try {
-      if (!req.session.userId) {
-        return res
-          .status(401)
-          .json({ message: "Unauthorized. Login required." });
-      }
       const team = await Team.create({
         title: req.body.title,
         userId: req.session.userId,
@@ -23,7 +19,22 @@ module.exports = {
   },
 
   // delete team (including notes and members)
-  deleteTeam: (req, res) => {
-    res.json({ message: `TODO: delete team id = ${req.params.id}` });
+  deleteTeam: async (req, res) => {
+    try {
+      const deleteCount = await Team.destroy({
+        where: {
+          userId: req.session.userId,
+          id: req.params.id,
+        },
+      });
+
+      if (deleteCount === 0) {
+        return invalidTeamError(res);
+      }
+      return res.json({ message: `Deleted ${req.params.id}` });
+    } catch (error) {
+      console.error(error);
+      serverError(res);
+    }
   },
 };

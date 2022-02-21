@@ -27,8 +27,22 @@ module.exports = {
   },
 
   // teams	display logged in users teams (kind like a dashboard)
-  renderTeams: (req, res) => {
-    res.render("teams");
+  renderTeams: async (req, res) => {
+    try {
+      const teams = await Team.findAll({
+        where: { userId: req.session.userId },
+      });
+      res.render("teams", {
+        teams: teams.map((team) => {
+          team = team.toJSON();
+          team.createdAt = team.createdAt.getTime();
+          return team;
+        }),
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).end();
+    }
   },
 
   // 	display details for a specific team (can only view own teams)
