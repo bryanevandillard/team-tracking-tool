@@ -11,11 +11,13 @@ const renderAlert = (message, element) => {
 const createButtonSpinner = (btnElement) => {
   const innerHTML = btnElement.innerHTML;
   return {
-    show(message = "Loading...") {
+    show(message = "Loading...", disabled = true) {
+      btnElement.disabled = disabled;
       btnElement.innerHTML = `
       <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> ${message}`;
     },
-    hide() {
+    hide(disabled = false) {
+      btnElement.disabled = disabled;
       btnElement.innerHTML = innerHTML;
     },
   };

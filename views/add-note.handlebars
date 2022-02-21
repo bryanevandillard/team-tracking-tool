@@ -1,15 +1,19 @@
 <main class="container">
   {{> page-header heading="Add a Note to Red Team Log"}}
   <p>
-    <a href="/teams/1">Back to Red Team Info</a>
+    <a href="/teams/{{team.id}}">Back to {{team.title}} Info</a>
   </p>
   <section class="pt-3">
     <h2 class="h5">Members</h2>
-    <p>Anna, Berry, Cedric, Donna</p>
+    <p>{{team.members}}
+      <br>
+      <a href="/teams/{{team.id}}/members">edit members</a>
+    </p>
   </section>
   <section style="max-width: 30rem" class="pt-3">
-    <form>
+    <form id="add-note-form">
       <h2 class="h5">Add Note</h2>
+      <input type="hidden" name="teamId" value="{{team.id}}">
       <div class="mb-3">
         <label for="date-input" class="form-label">Date</label>
         <input type="date" class="form-control" id="date-input" name="date">
@@ -20,30 +24,13 @@
       </div>
       <div class="mb-3">
         <label for="body-input" class="form-label">Note</label>
-        <textarea class="form-control" id="body-input" rows="5" name="body" placeholder="Who did you speak with? What did you talk about? How is the team doing?"></textarea>
+        <textarea class="form-control" id="body-input" rows="5" name="body"
+          placeholder="Who did you speak with? What did you talk about? How is the team doing?"></textarea>
       </div>
-      <button type="submit" class="btn btn-primary">Save Note</button>
+      <button type="submit" class="btn btn-primary" id="save-note-btn">Save Note</button>
     </form>
     </div>
 
   </section>
-
-  <script>
-    // Set default values for date and time inputs using client's local time
-    const formatTime = date => {
-      let hours = date.getHours();
-      if (hours < 10) {
-        hours = "0" + hours;
-      }
-      let minutes = date.getMinutes();
-      if (minutes < 10) {
-        minutes = "0" + minutes
-      }
-      return `${hours}:${minutes}`
-    }
-    document.querySelector("#date-input").valueAsDate = new Date();
-    document.querySelector("#time-input").value = formatTime(new Date());
-
-    // give textarea focus
-    document.querySelector("#body-input").focus();
-  </script>
+</main>
+<script src="/js/add-note.js"></script>

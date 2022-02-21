@@ -75,8 +75,20 @@ module.exports = {
   },
 
   // 	add note to specific team (can only view view for own teams)
-  renderAddNote: (req, res) => {
-    res.render("add-note");
+  renderAddNote: async (req, res) => {
+    try {
+      let team = await Team.findOne({
+        where: { userId: req.session.userId, id: req.params.id },
+        attributes: ["id", "title"],
+        include: [{ model: Member, attributes: ["name"] }],
+      });
+      team = team.toJSON();
+      team.members = team.members.map((m) => m.name).join(", ");
+      res.render("add-note", { team });
+    } catch (error) {
+      console.error(error);
+      res.status(500).end();
+    }
   },
 
   // view/add/delete members for a specific team (can only view view for own teams)
