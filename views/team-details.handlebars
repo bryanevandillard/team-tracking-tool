@@ -6,69 +6,31 @@
   </p>
   <section class="">
     <h2 class="h5">Members</h2>
-    <p>Anna, Berry, Cedric, Donna<br><a href="/teams/1/members">edit</a></p>
+    {{#if members.length}}
+    <p>{{members}}<br><a href="/teams/{{id}}/members">edit</a></p>
+    {{else}}
+    <p>This team doesn't have any members yet.<br><a href="/teams/{{id}}/members">Add members</a></p>
+    {{/if}}
   </section>
 
   <section class="pt-3">
-    <div class="d-flex justify-content-between pb-3">
+    <header class="d-flex justify-content-between pb-3">
       <h2 class="h5">Log</h2>
-      <a href="/teams/1/add-note" class="btn btn-primary">Add Note</a>
-    </div>
+      <a href="/teams/{{id}}/add-note" class="btn btn-primary">Add Note</a>
+    </header>
+
+    {{#each notes}}
     <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
+      <div class="card-header" data-ts="{{createdAt}}"></div>
       <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
+        <p>{{body}}</p>
       </div>
     </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
-    <div class="card mb-3">
-      <div class="card-header">
-        Mon 1/22/2022 11:00 AM
-      </div>
-      <div class="card-body">
-        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio.</p>
-      </div>
-    </div>
+    {{/each}}
+
+    {{#unless notes.length}}
+    <p>You haven't created any notes for this team yet.</p>
+    {{/unless}}
   </section>
 </main>
+<script src="/js/team-details.js"></script>

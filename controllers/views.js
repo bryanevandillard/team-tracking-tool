@@ -1,4 +1,5 @@
-const { Team, Member } = require("../models");
+const { Team, Member, Note } = require("../models");
+const { invalidTeamError } = require("./errors");
 
 module.exports = {
   renderWithLoginState: (req, res, next) => {
@@ -46,8 +47,31 @@ module.exports = {
   },
 
   // 	display details for a specific team (can only view own teams)
-  renderTeamDetails: (req, res) => {
-    res.render("team-details");
+  renderTeamDetails: async (req, res) => {
+    try {
+      const team = await Team.findOne({
+        where: {
+          userId: req.session.userId,
+          id: req.params.id,
+        },
+        include: [{ model: Member, attributes: ["name"] }, Note],
+        order: [[Note, "createdAt", "DESC"]],
+      });
+      if (!team) {
+        return invalidTeamError(res);
+      }
+      res.render("team-details", {
+        ...team.toJSON(),
+        members: team.members.map((m) => m.name).join(", "),
+        notes: team.notes.map((n) => ({
+          ...n.toJSON(),
+          createdAt: n.createdAt.getTime(),
+        })),
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).end();
+    }
   },
 
   // 	add note to specific team (can only view view for own teams)
