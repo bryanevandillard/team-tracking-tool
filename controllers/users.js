@@ -1,4 +1,5 @@
 const { User } = require("../models");
+const { serverError } = require("./errors");
 
 module.exports = {
   // create a new user
@@ -26,7 +27,7 @@ module.exports = {
         return;
       }
       // All other errors use 500 status
-      res.status(500).json({ message: "Server error" });
+      serverError(res);
     }
   },
 
