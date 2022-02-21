@@ -1,9 +1,5 @@
 const { Member, Team } = require("../models");
-
-const invalidTeamError = (res) =>
-  res.status(400).json({
-    message: "Team doesn't exist or user is not the team owner.",
-  });
+const { invalidTeamError, serverError } = require("./errors");
 
 module.exports = {
   // create member
@@ -23,7 +19,7 @@ module.exports = {
       res.json({ message: "Created member", member });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Server error" });
+      serverError(res);
     }
   },
 
@@ -38,7 +34,7 @@ module.exports = {
       res.json({ message: `Deleted ${member.id}` });
     } catch (error) {
       console.error(error);
-      res.status(500).json({ message: "Server error" });
+      serverError(res);
     }
   },
 };
