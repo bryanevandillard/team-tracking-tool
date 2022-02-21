@@ -29,8 +29,8 @@ router.post("/api/notes", createNote);
 router.delete("/api/notes/:id", deleteNote);
 
 // Teams API routes
-router.post("/api/teams", createTeam);
-router.delete("/api/teams/:id", deleteTeam);
+router.post("/api/teams", withAuth, createTeam);
+router.delete("/api/teams/:id", withAuth, deleteTeam);
 
 // User API routes
 router.post("/api/users", createUser);
@@ -44,10 +44,10 @@ viewRouter
   .get("/", renderHome)
   .get("/signup", renderSignup)
   .get("/login", renderLogin)
-  .get("/teams", renderTeams)
-  .get("/teams/add", renderAddTeam)
-  .get("/teams/:id", renderTeamDetails)
-  .get("/teams/:id/add-note", renderAddNote)
+  .get("/teams", withAuth, renderTeams)
+  .get("/teams/add", withAuth, renderAddTeam)
+  .get("/teams/:id", withAuth, renderTeamDetails)
+  .get("/teams/:id/add-note", withAuth, renderAddNote)
   .get("/teams/:id/members", withAuth, renderMembers);
 router.use(viewRouter);
 
