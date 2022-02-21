@@ -6,6 +6,7 @@
     "teams": [
       {
         "title": "Red Team",
+        "createdAt": "2021-01-03T22:04:00.000-0800",
         "members": [
           {
             "name": "Judith"
@@ -42,6 +43,7 @@
       },
       {
         "title": "Blue Team",
+        "createdAt": "2021-01-14T22:04:00.000-0800",
         "members": [{ "name": "Amber" }],
         "notes": [
           {
