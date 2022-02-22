@@ -15,6 +15,10 @@ module.exports = {
   },
   // explains what the app is and has a "Call to action" button to go signup
   renderHome: (req, res) => {
+    // redirect to /teams view if user is logged in
+    if (req.session.userId) {
+      return res.redirect("/teams");
+    }
     res.render("home");
   },
 
