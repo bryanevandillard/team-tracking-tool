@@ -6,7 +6,7 @@
       <tr>
         <th>Team</th>
         <th>Created</th>
-        <th></th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +16,8 @@
         {{!--format date on client side to reflect correct time zone--}}
         <td data-ts="{{createdAt}}"></td>
         <td>
-          <button class="btn x-btn delete-team" value="{{id}}" aria-label="delete {{title}}">❌</button>
+          <a class="btn emoji-btn add-note" href="/teams/{{id}}/add-note" aria-label="create a note for {{title}}">📝</a>
+          <button class="btn emoji-btn delete-team" value="{{id}}" aria-label="delete {{title}}">❌</button>
         </td>
       </tr>
       {{/each}}

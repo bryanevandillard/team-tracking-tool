@@ -1,9 +1,9 @@
-.x-btn {
+.emoji-btn {
   display: inline;
   padding: 0;
   opacity: 0.85;
 }
 
-.x-btn:hover {
+.emoji-btn:hover {
   opacity: 1;
 }
