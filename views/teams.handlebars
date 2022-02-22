@@ -1,5 +1,6 @@
 <main class="container">
   {{> page-header heading="Your Teams"}}
+  {{#if teams.length}}
   <a href="/teams/add">+ Add a team</a>
   <table class="table">
     <thead>
@@ -16,12 +17,19 @@
         {{!--format date on client side to reflect correct time zone--}}
         <td data-ts="{{createdAt}}"></td>
         <td>
-          <a class="btn emoji-btn add-note" href="/teams/{{id}}/add-note" aria-label="create a note for {{title}}">📝</a>
+          <a class="btn emoji-btn add-note" href="/teams/{{id}}/add-note"
+            aria-label="create a note for {{title}}">📝</a>
           <button class="btn emoji-btn delete-team" value="{{id}}" aria-label="delete {{title}}">❌</button>
         </td>
       </tr>
       {{/each}}
     </tbody>
   </table>
+  {{else}}
+  <p class="my-4">
+    You don't have any teams yet!
+  </p>
+  <a class="btn btn-primary btn-lg" href="/teams/add">Add a team</a>
+  {{/if}}
 </main>
 <script src="/js/teams.js"></script>
