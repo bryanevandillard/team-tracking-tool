@@ -88,7 +88,7 @@ module.exports = {
       });
       team = team.toJSON();
       team.members = team.members.map((m) => m.name).join(", ");
-      res.render("add-note", { team });
+      res.render("add-note", { team, heading: `Add a Note to ${team.title} Log` });
     } catch (error) {
       console.error(error);
       res.status(500).end();
