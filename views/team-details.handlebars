@@ -34,7 +34,10 @@
 
     {{#each notes}}
     <div class="card mb-3">
-      <div class="card-header" data-ts="{{createdAt}}"></div>
+      <div class="card-header d-flex justify-content-between"><span data-ts="{{createdAt}}"></span>
+        <button class="btn emoji-btn delete-note-btn" aria-label="Delete note" title="delete note"
+          data-bs-toggle="modal" data-bs-target="#confirmModal" value="{{id}}">❌</button>
+      </div>
       <div class="card-body">
         <p>{{body}}</p>
       </div>
@@ -46,4 +49,21 @@
     {{/unless}}
   </section>
 </main>
+<div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Delete Note</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete the note?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="confirm-delete-note-btn">Delete Note</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="/js/team-details.js"></script>

@@ -60,3 +60,55 @@ editTitleFormEl.addEventListener("submit", async (event) => {
     spinner.hide();
   }
 });
+
+// handle delete note confirmation
+const confirmDeleteBtn = document.querySelector("#confirm-delete-note-btn");
+const confirmDeleteSpinner = createButtonSpinner(confirmDeleteBtn);
+const confirmModalEl = document.getElementById("confirmModal");
+
+// update the modal when a delete button is clicked
+confirmModalEl.addEventListener("show.bs.modal", function (event) {
+  confirmDeleteBtn.value = event.relatedTarget.value;
+});
+
+// Handles sending a request to delete a note when the confirm delete button in
+// the confirm modal is clicked.
+async function handleConfirmDeleteClick() {
+  const modalDismissBtnList =
+    confirmModalEl.querySelectorAll("[data-bs-dismiss]");
+  const modalBodyEl = confirmModalEl.querySelector(".modal-body");
+
+  try {
+    // put modal elements into a loading state
+    confirmDeleteSpinner.show();
+    modalDismissBtnList.forEach((element) => {
+      element.disabled = true;
+    });
+    modalBodyEl.textContent = "Deleting note...";
+
+    // send delete request
+    const noteId = this.value;
+    const res = await fetch(`/api/notes/${noteId}`, { method: "DELETE" });
+
+    if (res.ok) {
+      // reload page after hide modal animation completes
+      confirmModalEl.addEventListener("hidden.bs.modal", () =>
+        location.reload()
+      );
+      bootstrap.Modal.getInstance(confirmModalEl).hide();
+      return;
+    }
+    const { message } = await res.json();
+    throw new Error(message);
+  } catch (error) {
+    console.error(error);
+    // end loading state on modal and show message
+    modalBodyEl.textContent = error.message;
+    confirmDeleteSpinner.hide();
+    modalDismissBtnList.forEach((element) => {
+      element.disabled = false;
+    });
+  }
+}
+
+confirmDeleteBtn.addEventListener("click", handleConfirmDeleteClick);
