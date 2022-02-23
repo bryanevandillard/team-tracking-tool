@@ -66,6 +66,7 @@ module.exports = {
       }
       res.render("team-details", {
         ...team.toJSON(),
+        heading: team.title,
         members: team.members.map((m) => m.name).join(", "),
         notes: team.notes.map((n) => ({
           ...n.toJSON(),

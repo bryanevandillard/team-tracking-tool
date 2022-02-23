@@ -37,4 +37,23 @@ module.exports = {
       serverError(res);
     }
   },
+
+  // patch team updates the given fields in req.body
+  patchTeam: async (req, res) => {
+    try {
+      const [affectedRows] = await Team.update(req.body, {
+        where: {
+          userId: req.session.userId,
+          id: req.params.id,
+        },
+      });
+      if (affectedRows === 0) {
+        return invalidTeamError(res);
+      }
+      return res.json({ message: "Team updated successfully" });
+    } catch (error) {
+      console.error(error);
+      serverError(res);
+    }
+  },
 };

@@ -1,8 +1,21 @@
 <main class="container">
-  {{> page-header heading="Red Team"}}
+
+  {{> page-header}}
+
+  <form id="edit-title-form" style="max-width: 30rem" class="d-none pt-5">
+    <input type="hidden" name="teamId" value="{{id}}">
+    <div class="input-group mb-1">
+      <input type="text" class="form-control" placeholder="Team's title" aria-label="Team's title"
+        aria-describedby="save-title-btn" id="title-input" value="{{title}}" name="title" required minlength="1"
+        maxlength="20">
+      <button class="btn btn-outline-primary" type="submit" id="save-title-btn">Save</button>
+      <button class="btn btn-outline-secondary" type="button" id="cancel-edit-title-btn">Cancel</button>
+    </div>
+  </form>
 
   <p>
-    <a href="/teams">Back to teams</a>
+    <a class="btn btn-link p-0" href="/teams">Back to teams</a> | <button id="edit-title-btn" class="btn btn-link p-0"
+      aria-label="edit team title p-0">Edit title</button>
   </p>
   <section class="">
     <h2 class="h5">Members</h2>

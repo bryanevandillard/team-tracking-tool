@@ -4,7 +4,7 @@ const express = require("express");
 const { createMember, deleteMember } = require("./members");
 const { withAuth } = require("./middleware");
 const { createNote, deleteNote } = require("./notes");
-const { createTeam, deleteTeam } = require("./teams");
+const { createTeam, deleteTeam, patchTeam } = require("./teams");
 const { createUser, login, logout } = require("./users");
 const {
   renderHome,
@@ -31,6 +31,7 @@ router.delete("/api/notes/:id", deleteNote);
 // Teams API routes
 router.post("/api/teams", withAuth, createTeam);
 router.delete("/api/teams/:id", withAuth, deleteTeam);
+router.patch("/api/teams/:id", withAuth, patchTeam);
 
 // User API routes
 router.post("/api/users", createUser);
