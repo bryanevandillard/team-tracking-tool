@@ -59,3 +59,6 @@ deleteMemberBtns.forEach((btnEl) => {
     }
   });
 });
+
+// focus on the member name input when the page loads for rapidly adding members
+nameInputEl.focus();
